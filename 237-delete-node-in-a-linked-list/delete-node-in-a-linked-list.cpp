@@ -9,11 +9,11 @@
 class Solution {
 public:
     void deleteNode(ListNode* node) {
-        if (node == nullptr || node->next == nullptr) return; // Edge case (though guaranteed)
+        if (node == nullptr || node->next == nullptr) return;
 
-    node->val = node->next->val; // Copy next node's value
-    ListNode* temp = node->next; // Store next node
-    node->next = node->next->next; // Skip the next node
-    delete temp;
+        node->val = node->next->val;
+        ListNode* temp = node->next;
+        node->next = node->next->next;
+        delete temp;
     }
 };

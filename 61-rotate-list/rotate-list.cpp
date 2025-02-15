@@ -11,7 +11,7 @@
 class Solution {
 public:
     ListNode* rotateRight(ListNode* head, int k) {
-        if (head == nullptr || head->next == nullptr) return head;
+        if (head == nullptr || head->next == nullptr || k == 0) return head;
         // Step1 -- Find the length of the linkedList
         ListNode* temp = head;
         int length = 1;

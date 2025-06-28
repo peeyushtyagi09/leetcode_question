@@ -6,27 +6,46 @@ public:
         // step 1 : first we create teo array left[n] and right[n] and compare first with left and right
         // step 2 : we create sum and add max between left and right and then we return it
         // Let start the code -> 
+        // int n = ratings.size();
+        // int left[n], right[n];
+        // left[0] = 1, right[n - 1] = 1;
+        // for (int i = 1; i < n; i++){
+        //     if(ratings[i] > ratings[i - 1]){
+        //         left[i] = left[i - 1] + 1;
+        //     }else{
+        //         left[i] = 1;
+        //     }
+        // }
+        // for (int i = n - 2; i >= 0; i--){
+        //     if(ratings[i] > ratings[i + 1]){
+        //         right[i] = right[i + 1] + 1;
+        //     }else{
+        //         right[i] = 1;
+        //     }
+        // }
+        // long long sum = 0;
+        // for (int i = 0; i < n; i++){
+        //     sum += max(left[i], right[i]);
+        // }
+        // return sum;
+
+        // more optimal this solution 
         int n = ratings.size();
-        int left[n], right[n];
-        left[0] = 1, right[n - 1] = 1;
+        vector<int> candies(n, 1);
+
+        // Left to right
         for (int i = 1; i < n; i++){
             if(ratings[i] > ratings[i - 1]){
-                left[i] = left[i - 1] + 1;
-            }else{
-                left[i] = 1;
+                candies[i] = candies[i - 1]  + 1;
             }
         }
+        // Right to Left
         for (int i = n - 2; i >= 0; i--){
             if(ratings[i] > ratings[i + 1]){
-                right[i] = right[i + 1] + 1;
-            }else{
-                right[i] = 1;
+                candies[i] = max(candies[i], candies[i + 1] + 1);
             }
         }
-        long long sum = 0;
-        for (int i = 0; i < n; i++){
-            sum += max(left[i], right[i]);
-        }
-        return sum;
+        // Total candies needed
+        return accumulate(candies.begin(), candies.end(), 0);
     }
 };

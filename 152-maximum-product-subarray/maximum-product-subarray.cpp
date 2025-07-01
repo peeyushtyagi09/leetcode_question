@@ -19,17 +19,38 @@ public:
 
         // Optimized this up to O(n)2
 
-        int max_product = INT_MIN;
+        // int max_product = INT_MIN;
+        // int n = nums.size();
+
+        // for (int i = 0; i < n; i++){
+        //     int product = 1;
+        //     for (int j = i; j < n; j++){
+        //         product = product * nums[j];
+
+        //         max_product = max(max_product, product);
+        //     }
+        // }
+        // return max_product;
+        // that code is run but i am not happy with that code we have to 
+        // Optimized this code 
+
+        // Optimal solution using Dp
         int n = nums.size();
+        int maxSoFar = nums[0];
+        int maxProd = nums[0];
+        int minProd = nums[0];
 
-        for (int i = 0; i < n; i++){
-            int product = 1;
-            for (int j = i; j < n; j++){
-                product = product * nums[j];
+        for(int i = 1; i < n; i++){
+            int curr = nums[i];
 
-                max_product = max(max_product, product);
+            if (curr < 0){
+                swap(maxProd, minProd);
             }
+            maxProd = max(curr, curr * maxProd);
+            minProd = min(curr, curr * minProd);
+
+            maxSoFar = max(maxSoFar, maxProd);
         }
-        return max_product;
+        return maxSoFar;
     }
 };

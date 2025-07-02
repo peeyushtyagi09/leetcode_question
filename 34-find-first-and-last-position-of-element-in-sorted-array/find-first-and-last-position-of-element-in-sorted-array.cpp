@@ -1,25 +1,15 @@
 class Solution {
 public:
-    vector<int> searchRange(vector<int>& arr, int target) {
-         unordered_map<int, int> freqMap; // Map to store the frequency of each number
-
-        // Calculate frequencies of each number
-        for (int num : arr) {
-            freqMap[num]++;
-        }
-
-        int first = -1;
-        int second = -1;
-
-        // Find the first occurrence and calculate the last occurrence
-        for (int i = 0; i < arr.size(); i++) {
-            if (arr[i] == target) {
-                first = i; // First occurrence
-                second = first + freqMap[target] - 1; // Last occurrence
-                break; // No need to continue after finding the first occurrence
+    vector<int> searchRange(vector<int>& nums, int target) {
+        // Brute force approach using leanear search
+        // Code : --
+            int first = -1, last = -1;
+            for (int i = 0; i < nums.size(); i++){
+                if (nums[i] == target){
+                    if (first == -1) first = i;
+                    last = i;
+                }
             }
-        }
-
-        return {first, second};
+            return {first, last};
     }
 };

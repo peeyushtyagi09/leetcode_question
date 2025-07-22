@@ -1,19 +1,16 @@
 class Solution {
 public:
-    bool checkPerfectNumber(int num) {
-        int temp = num;
-        int sum = 0;
-        temp = temp/2;
-        while(temp > 0){
-            if (num % temp == 0){
-                sum += temp;
+    bool checkPerfectNumber(int num) { 
+        
+        int count = 1;
+        long long int ans = 0;
+        while(count != (num / 2) + 1){
+            if (num % count == 0){
+                ans += count;
             }
-            temp--;
+            count++;
         }
-        if (sum == num){
-            return true;
-        }else{
-            return false;
-        }
+        if (num == ans) return true;
+        else return false;
     }
 };

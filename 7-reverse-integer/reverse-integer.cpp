@@ -1,21 +1,16 @@
 class Solution {
 public:
-    int reverse(int x) {
-        if (x == INT_MIN) return 0;  // Handle the edge case for INT_MIN
-        
-        int result = 0;
-        int sign = (x < 0) ? -1 : 1;
-        x = abs(x);
-        
-        while (x > 0) {
-            int rem = x % 10;
-            if (result > INT_MAX / 10 || (result == INT_MAX / 10 && rem > 7)) {
-                return 0;  // Handle overflow case
-            }
-            result = result * 10 + rem;
-            x /= 10;
+    int reverse(int num) {
+        int ans = 0;
+        while(num != 0){
+            int digit = num % 10;
+            num = num / 10;
+
+            if (ans > 214748364 || (ans == 214748364  && digit > 7)) return 0;
+             if (ans < -214748364 || (ans == -214748364  && digit < -8)) return 0;
+
+             ans = ans * 10 + digit;
         }
-        
-        return sign * result;
+        return ans;
     }
 };
